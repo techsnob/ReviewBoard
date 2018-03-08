@@ -3,6 +3,7 @@ package com.techsnob.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -12,6 +13,7 @@ public class User {
 	private String username;
 	private String password;
 	private boolean enabled;
+	private byte[] photo;
 
 	public User() {
 		super();
@@ -50,5 +52,17 @@ public class User {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
+	
+	@Column(name = "photo", nullable = false)
+	@Lob
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+	
+	
 
 }

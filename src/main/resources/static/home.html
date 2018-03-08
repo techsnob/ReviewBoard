@@ -5,10 +5,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="register" method="get">
+<form action="register" method="post" enctype="multipart/form-data">
 Username:<input type="text" name="username" id="username"><br/>
 Password:<input type="password" name="password" id="password"><br/>
+Photo:<input type="file" name="photo" id="password"><br/>
 <input type="submit" value="Register">
+</form>
+
+<form action="getUser" method="get" enctype="multipart/form-data">
+Enter Username to get details:<input type="text" name="username" id="username"><br/>
+<input type="submit" value="Get User details">
 </form>
 </body>
 </html>

@@ -11,7 +11,6 @@ public class TimeComplexityMap {
 	}
 	
 	static class Key{
-		@Override
 		public int hashcode() {
 			return 42;
 		}

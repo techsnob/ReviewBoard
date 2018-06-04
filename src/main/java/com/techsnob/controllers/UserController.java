@@ -22,11 +22,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String showHomePage() {
-		return "index";
-	}
-	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	public String register(@RequestParam String username, @RequestParam String password, @RequestParam MultipartFile photo) throws IOException {

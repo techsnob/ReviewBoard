@@ -1,6 +1,7 @@
 package com.techsnob.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.techsnob.entities.User;
@@ -12,18 +13,29 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private Environment env;
 
 //    @Autowired
 //    private BCryptPasswordEncoder bCryptPasswordEncoder;
     
     @Override
 	public User findUserByName(String username) throws UserNotFoundByNameException {
-    	User u = userRepository.findByUsername(username);
-    	if(u != null) {
-    		return u;
-    	} else {
-    		throw new UserNotFoundByNameException("User not found for the entered name: "+ username);
-    	}
+    	String[] profiles = env.getActiveProfiles();
+    	for (String string : profiles) {
+			if(string.equals("dev-jdbc")) {
+				return new User();
+			} else {
+				User u = userRepository.findByUsername(username);
+				if(u != null) {
+					return u;
+				} else {
+					throw new UserNotFoundByNameException("User not found for the entered name: "+ username);
+				}
+			}
+		}
+		return null;
 	}
     
     @Override
